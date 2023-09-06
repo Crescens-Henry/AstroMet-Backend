@@ -1,6 +1,7 @@
 package com.ApiRest.AstroMet.controllers;
 
 import com.ApiRest.AstroMet.controllers.dtos.requests.CreateUserRequest;
+import com.ApiRest.AstroMet.controllers.dtos.requests.LoginRequest;
 import com.ApiRest.AstroMet.controllers.dtos.responses.BaseResponse;
 import com.ApiRest.AstroMet.services.interfaces.IUserService;
 import jakarta.validation.Valid;
@@ -10,19 +11,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
+@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
     @Autowired
     private IUserService service;
 
-    @GetMapping
-    public ResponseEntity<BaseResponse> list() {
-        BaseResponse baseResponse = service.list();
-        return new ResponseEntity<>(baseResponse, baseResponse.getHttpStatus());
-    }
     @RequestMapping(value = "findByName", params = "name")
-    public ResponseEntity<BaseResponse> get(@RequestParam String name) {
-        BaseResponse baseResponse = service.getUserByName(name);
-        return new ResponseEntity<>(baseResponse, baseResponse.getHttpStatus());
+    public ResponseEntity<BaseResponse> get(@RequestBody LoginRequest request) {
+        return service.get(request.getName()).apply();
     }
     @PostMapping(value = "register")
     public ResponseEntity<BaseResponse> create(@RequestBody @Valid CreateUserRequest request) {

@@ -17,4 +17,9 @@ public class GetUserResponse {
     private String educationLevel;
     private String address;
     private String regionOrState;
+
+    private String nameTutor;
+    private String lastNameTutor;
+    private String phoneNumberTutor;
+    private String emailTutor;
 }

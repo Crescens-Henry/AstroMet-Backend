@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
     @Column(name = "last_name",nullable = false)
     private String lastName;
@@ -24,4 +24,9 @@ public class User {
     private String educationLevel;
     private String address;
     private String regionOrState;
+
+    private String nameTutor;
+    private String lastNameTutor;
+    private String phoneNumberTutor;
+    private String emailTutor;
 }
